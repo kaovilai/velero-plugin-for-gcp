@@ -45,6 +45,7 @@ const (
 	zoneSeparator                  = "__"
 	projectKey                     = "project"
 	snapshotLocationKey            = "snapshotLocation"
+	snapshotTypeKey                = "snapshotType"
 	volumeProjectKey               = "volumeProject"
 	snapshotCreationTimeoutKey     = "snapshotCreationTimeout"
 	snapshotCreationTimeoutDefault = 60 * time.Minute
@@ -63,7 +64,7 @@ type VolumeSnapshotter struct {
 	snapshotLocation        string
 	volumeProject           string
 	snapshotProject         string
-        snapshotType            string
+	snapshotType            string
 	snapshotCreationTimeout time.Duration
 }
 
@@ -128,6 +129,7 @@ func (b *VolumeSnapshotter) Init(config map[string]string) error {
 	if b.snapshotProject == "" {
 		b.snapshotProject = b.volumeProject
 	}
+
 	// if config["snapshotCreationTimeout"] is empty, default to 60m; otherwise, parse it
 	if val := config[snapshotCreationTimeoutKey]; val == "" {
 		b.snapshotCreationTimeout = snapshotCreationTimeoutDefault
