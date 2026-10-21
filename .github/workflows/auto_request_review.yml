@@ -12,7 +12,7 @@ permissions:
 jobs:
   auto-request-review:
     name: Auto Request Review
-    # Reviewers in .github/auto-assignees.yml are upstream maintainers, not collaborators of this repo, so the job fails here.
+    # Run only in the upstream repository. Downstream copies skip this job because these reviewers are upstream maintainers.
     if: github.repository == 'velero-io/velero-plugin-for-gcp'
     runs-on: ubuntu-latest
     steps:
